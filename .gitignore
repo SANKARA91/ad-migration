@@ -1,0 +1,8 @@
+terraform.tfvars
+*.tfvars
+.terraform/
+*.tfstate
+*.tfstate.backup
+reports/
+__pycache__/
+*.pyc

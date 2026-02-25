@@ -1,0 +1,52 @@
+name: AD Migration Pipeline
+
+on:
+  push:
+    paths:
+      - 'data/on_premise_ad.json'
+  workflow_dispatch:
+
+jobs:
+  migration:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install azure-identity msgraph-sdk pandas
+
+      - name: Run analyzer
+        env:
+          ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
+          ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
+          ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
+        run: |
+          cd scripts
+          python analyzer.py
+
+      - name: Run migrator
+        env:
+          ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
+          ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
+          ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
+        run: |
+          cd scripts
+          python migrator.py
+
+      - name: Run reporter
+        run: |
+          cd scripts
+          python reporter.py
+
+      - name: Upload reports
+        uses: actions/upload-artifact@v3
+        with:
+          name: migration-reports
+          path: reports/

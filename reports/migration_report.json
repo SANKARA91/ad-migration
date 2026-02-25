@@ -1,0 +1,79 @@
+{
+  "migrated": [
+    {
+      "username": "j.dupont",
+      "first_name": "Jean",
+      "last_name": "Dupont",
+      "department": "IT",
+      "job_title": "SysAdmin",
+      "email": "j.dupont@oldcorp.local",
+      "enabled": true,
+      "new_upn": "jean.dupont@brsankaraoutlook.onmicrosoft.com"
+    },
+    {
+      "username": "m.durand",
+      "first_name": "Marie",
+      "last_name": "Durand",
+      "department": "DEV",
+      "job_title": "Developer",
+      "email": "m.durand@oldcorp.local",
+      "enabled": true,
+      "new_upn": "marie.durand@brsankaraoutlook.onmicrosoft.com"
+    },
+    {
+      "username": "p.bernard",
+      "first_name": "Pierre",
+      "last_name": "Bernard",
+      "department": "RH",
+      "job_title": "RH Manager",
+      "email": "p.bernard@oldcorp.local",
+      "enabled": true,
+      "new_upn": "pierre.bernard@brsankaraoutlook.onmicrosoft.com"
+    },
+    {
+      "username": "s.martin",
+      "first_name": "Sophie",
+      "last_name": "Martin",
+      "department": "FINANCE",
+      "job_title": "Analyst",
+      "email": "s.martin@oldcorp.local",
+      "enabled": true,
+      "new_upn": "sophie.martin@brsankaraoutlook.onmicrosoft.com"
+    },
+    {
+      "username": "l.petit",
+      "first_name": "Luc",
+      "last_name": "Petit",
+      "department": "MANAGEMENT",
+      "job_title": "CEO",
+      "email": "l.petit@oldcorp.local",
+      "enabled": true,
+      "new_upn": "luc.petit@brsankaraoutlook.onmicrosoft.com"
+    }
+  ],
+  "conflicts": [
+    {
+      "username": "alice.dupont",
+      "first_name": "Alice",
+      "last_name": "Dupont",
+      "department": "DEV",
+      "job_title": "Developer",
+      "email": "alice.dupont@oldcorp.local",
+      "enabled": true,
+      "new_upn": "alice.dupont@brsankaraoutlook.onmicrosoft.com"
+    }
+  ],
+  "disabled": [
+    {
+      "username": "john.doe",
+      "first_name": "John",
+      "last_name": "Doe",
+      "department": "IT",
+      "job_title": "Network Engineer",
+      "email": "john.doe@oldcorp.local",
+      "enabled": false,
+      "new_upn": "john.doe@brsankaraoutlook.onmicrosoft.com"
+    }
+  ],
+  "failed": []
+}

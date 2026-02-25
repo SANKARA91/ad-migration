@@ -1,0 +1,20 @@
+{
+  "company": "OldCorp",
+  "domain": "oldcorp.local",
+  "users": [
+    {"username": "j.dupont", "first_name": "Jean", "last_name": "Dupont", "department": "IT", "job_title": "SysAdmin", "email": "j.dupont@oldcorp.local", "enabled": true},
+    {"username": "m.durand", "first_name": "Marie", "last_name": "Durand", "department": "DEV", "job_title": "Developer", "email": "m.durand@oldcorp.local", "enabled": true},
+    {"username": "p.bernard", "first_name": "Pierre", "last_name": "Bernard", "department": "RH", "job_title": "RH Manager", "email": "p.bernard@oldcorp.local", "enabled": true},
+    {"username": "alice.dupont", "first_name": "Alice", "last_name": "Dupont", "department": "DEV", "job_title": "Developer", "email": "alice.dupont@oldcorp.local", "enabled": true},
+    {"username": "s.martin", "first_name": "Sophie", "last_name": "Martin", "department": "FINANCE", "job_title": "Analyst", "email": "s.martin@oldcorp.local", "enabled": true},
+    {"username": "l.petit", "first_name": "Luc", "last_name": "Petit", "department": "MANAGEMENT", "job_title": "CEO", "email": "l.petit@oldcorp.local", "enabled": true},
+    {"username": "john.doe", "first_name": "John", "last_name": "Doe", "department": "IT", "job_title": "Network Engineer", "email": "john.doe@oldcorp.local", "enabled": false}
+  ],
+  "groups": [
+    {"name": "IT", "members": ["j.dupont", "john.doe"]},
+    {"name": "DEV", "members": ["m.durand", "alice.dupont"]},
+    {"name": "RH", "members": ["p.bernard"]},
+    {"name": "FINANCE", "members": ["s.martin"]},
+    {"name": "MANAGEMENT", "members": ["l.petit"]}
+  ]
+}
