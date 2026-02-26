@@ -6,3 +6,6 @@ terraform.tfvars
 reports/
 __pycache__/
 *.pyc
+.env
+.env
+on_premise_real.csv

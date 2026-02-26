@@ -1,0 +1,5 @@
+﻿"GivenName","Surname","SamAccountName","UserPrincipalName","Department","Title","Enabled","EmailAddress"
+"nw",,"nw","nw@lutin.fr",,,"True",
+"Jean","Dupont","j.dupont","j.dupont@lutin.fr","IT","SysAdmin","True",
+"Marie","Durand","m.durand","m.durand@lutin.fr","DEV","Developer","True",
+"Sophie","Martin","s.martin","s.martin@lutin.fr","RH","RH Manager","True",
