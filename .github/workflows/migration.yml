@@ -3,50 +3,83 @@ name: AD Migration Pipeline
 on:
   push:
     paths:
+      - 'data/on_premise_real.csv'
       - 'data/on_premise_ad.json'
   workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environnement cible'
+        required: true
+        default: 'dev'
+        type: choice
+        options:
+          - dev
+          - staging
+          - prod
 
 jobs:
-  migration:
+
+  # ─── DEV ───────────────────────────────────────────────
+  migration-dev:
+    name: "🔧 Migration DEV"
     runs-on: ubuntu-latest
-
+    environment: dev
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Setup Python
-        uses: actions/setup-python@v4
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
         with:
           python-version: '3.11'
-
       - name: Install dependencies
-        run: pip install azure-identity msgraph-sdk pandas
-
-      - name: Run analyzer
+        run: pip install azure-identity msgraph-sdk pandas python-dotenv
+      - name: Run migration DEV
         env:
           ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
           ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
           ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
         run: |
           cd scripts
-          python analyzer.py
+          python migrate_env.py dev
 
-      - name: Run migrator
-        env:
-          ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
-          ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
-          ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
-        run: |
-          cd scripts
-          python migrator.py
-
-      - name: Run reporter
-        run: |
-          cd scripts
-          python reporter.py
-
-      - name: Upload reports
-        uses: actions/upload-artifact@v4
+  # ─── STAGING ───────────────────────────────────────────
+  migration-staging:
+    name: "🧪 Migration STAGING"
+    runs-on: ubuntu-latest
+    environment: staging
+    needs: migration-dev
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
         with:
-          name: migration-reports
-          path: reports/
+          python-version: '3.11'
+      - name: Install dependencies
+        run: pip install azure-identity msgraph-sdk pandas python-dotenv
+      - name: Run migration STAGING
+        env:
+          ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
+          ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
+          ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
+        run: |
+          cd scripts
+          python migrate_env.py staging
+
+  # ─── PROD ──────────────────────────────────────────────
+  migration-prod:
+    name: "🚀 Migration PROD"
+    runs-on: ubuntu-latest
+    environment: prod
+    needs: migration-staging
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: pip install azure-identity msgraph-sdk pandas python-dotenv
+      - name: Run migration PROD
+        env:
+          ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
+          ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
+          ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
+        run: |
+          cd scripts
+          python migrate_env.py prod

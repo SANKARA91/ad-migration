@@ -1,0 +1,8 @@
+{
+  "environment": "staging",
+  "description": "Environnement de staging - tous les users dans groupes isoles",
+  "max_users": -1,
+  "group_prefix": "STAGING-",
+  "dry_run": false,
+  "auto_approve": true
+}

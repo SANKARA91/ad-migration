@@ -1,0 +1,8 @@
+{
+  "environment": "prod",
+  "description": "Environnement de production - migration reelle",
+  "max_users": -1,
+  "group_prefix": "",
+  "dry_run": false,
+  "auto_approve": false
+}

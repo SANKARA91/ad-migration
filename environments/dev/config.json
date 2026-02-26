@@ -1,0 +1,8 @@
+{
+  "environment": "dev",
+  "description": "Environnement de developpement - 2 users max",
+  "max_users": 2,
+  "group_prefix": "DEV-",
+  "dry_run": false,
+  "auto_approve": true
+}
